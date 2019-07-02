@@ -98,8 +98,8 @@
 	<div class="forms">
 	<form class="firstItem">
 		<select name="firstName" id="firstName">
-			<option value="all">ALL</option>
 			<option value="none">NONE</option>
+			<option value="all">ALL</option>
 			<option class="category" value="animals">ANIMALS</option>
 			<option value="mammals">Mammals</option>
 			<option value="insects">Insects</option>
@@ -112,7 +112,7 @@
 			<option class="category" value="characters">CHARACTERS</option>
 			<option value="chartype">Type (Hero, Villain)</option>
 			<option value="race">Race</option>
-			<option value="mythology">Mythology</option>
+			<option value="mythology">Mythology (culture)</option>
 			<option value="occupation">Occupation</option>
 			<option value="personality">Personality Trait</option>
 			
@@ -134,8 +134,8 @@
 	</form>
 	<form class="secondItem">
 		<select name="firstName" id="secondName">
-			<option value="all">ALL</option>
 			<option value="none">NONE</option>
+			<option value="all">ALL</option>
 			<option class="category" value="animals">ANIMALS</option>
 			<option value="mammals">Mammals</option>
 			<option value="insects">Insects</option>
@@ -148,7 +148,7 @@
 			<option class="category" value="characters">CHARACTERS</option>
 			<option value="chartype">Type (Hero, Villain)</option>
 			<option value="race">Race</option>
-			<option value="mythology">Mythology</option>
+			<option value="mythology">Mythology (culture)</option>
 			<option value="occupation">Occupation</option>
 			<option value="personality">Personality Trait</option>
 			
@@ -170,8 +170,8 @@
 	</form>
 	<form class="thirdItem">
 		<select name="firstName" id="thirdName">
-			<option value="all">ALL</option>
 			<option value="none">NONE</option>
+			<option value="all">ALL</option>
 			<option class="category" value="animals">ANIMALS</option>
 			<option value="mammals">Mammals</option>
 			<option value="insects">Insects</option>
@@ -184,7 +184,7 @@
 			<option class="category" value="characters">CHARACTERS</option>
 			<option value="chartype">Type (Hero, Villain)</option>
 			<option value="race">Race</option>
-			<option value="mythology">Mythology</option>
+			<option value="mythology">Mythology (culture)</option>
 			<option value="occupation">Occupation</option>
 			<option value="personality">Personality Trait</option>
 			
@@ -300,7 +300,11 @@
 			"Rattle Snake",
 			"Garden Snake",
 			"Python",
-			"Cobra"
+			"Cobra",
+			"Gecko",
+			"Monitor",
+			"Viper",
+			"Constrictor snake",
 		],
 		
 		"fish" : [
@@ -358,7 +362,9 @@
 			"Demon",
 			"Angel",
 			"Archangel",
-			"Valkyrie"
+			"Valkyrie",
+			"Faerie",
+			"Troll"
 		],
 			
 			
@@ -397,7 +403,8 @@
 				"Zombie",
 				"Hellspawn",
 				"Ent",
-				"Troll"
+				"Troll",
+				"Faerie"
 			],
 			
 			"mythology" : [
@@ -558,6 +565,14 @@
 				"WW2 Fighter Jet",
 				"Commerical Airliner",
 				"Spaceship",
+				"Apache helicopter",
+				"Spitfire",
+				"Messerschmitt",
+				"Star Destroyer",
+				"Cargo hauler",
+				"Zeppelin",
+				"Hot air balloon",
+				"Jetpack"
 			],
 			
 			"military" : [
@@ -566,6 +581,11 @@
 				"Wheeled Military Vehicle",
 				"Bomber",
 				"Wheeled Tank",
+				"Aircraft carrier",
+				"Troop transport",
+				"Sherman Tank",
+				"Tiger Tank",
+				"Ferrett Scout Car"
 			],
 			
 			"boats" : [
@@ -577,7 +597,12 @@
 				"Submarine",
 				"U-boat",
 				"Icebreaker",
-				"Tug boat"
+				"Tug boat",
+				"Aircraft carrier",
+				"Canoe",
+				"Kayak",
+				"Paddle boat",
+				"Dingy",
 			],
 			
 			"projweapon" : [
@@ -591,11 +616,12 @@
 				"Blow dart",
 				"Thermal Detonator",
 				"Napalm",
-				"Rocket",
 				"Mortar",
 				"Crossbow",
 				"Bow and Arrow",
 				"Grenade",
+				"Trebuchet",
+				"Catapult"
 			],
 			
 			"meleeweapon" : [
@@ -651,6 +677,8 @@
 			};
 		
 		function submit() {
+			var firstSeperator = ", ";
+			var secondSeperator = ", ";
 			var firstName = document.getElementById("firstName");
 			var firstTemp = firstName.value;
 			var whatVar = dictionary[firstTemp];
@@ -667,6 +695,11 @@
 			}
 			;
 			
+			if (firstTemp == "none") {
+				firstSeperator = "";
+			} else {
+				firstSeperator = ", ";
+			}
 			
 			var secondName = document.getElementById("secondName");
 			var secondTemp = secondName.value;
@@ -683,6 +716,12 @@
 				whatVar2 = dictionary["mammals"].concat(dictionary["insects"], dictionary["birds"], dictionary["reptiles"], dictionary["fish"], dictionary["prehistoric"], dictionary["mythologicalcreature"], dictionary["chartype"], dictionary["race"], dictionary["mythology"], dictionary["occupation"], dictionary["personality"], dictionary["landscape"], dictionary["location"], dictionary["architecture"], dictionary["planet"], dictionary["cars"], dictionary["aircraft"], dictionary["military"], dictionary["boats"], dictionary["projweapon"], dictionary["meleeweapon"], dictionary["props"]);
 			}
 			;
+			
+			if (secondTemp == "none") {
+				secondSeperator = "";
+			} else {
+				secondSeperator = ", ";
+			}
 			
 			
 			var thirdName = document.getElementById("thirdName");
@@ -721,7 +760,7 @@
 			random_items3(whatVar3);
 			
 			var resultsp = document.getElementById("resultsp");
-			resultsp.innerText = random_items(whatVar) + ", " + random_items2(whatVar2) + ", " + random_items3(whatVar3);
+			resultsp.innerText = random_items(whatVar) + firstSeperator + random_items2(whatVar2) + secondSeperator + random_items3(whatVar3);
 			
 			function random_items(firstName)
 			{
